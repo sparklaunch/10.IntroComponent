@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { slide, fade } from "svelte/transition";
     let firstName: string;
     let lastName: string;
     let email: string;
@@ -32,6 +33,14 @@
                     class:warning={alertFirstName}
                     required
                 />
+                {#if alertFirstName}
+                    <img
+                        src="/assets/icon-error.svg"
+                        alt="Error"
+                        transition:fade
+                    />
+                    <p transition:slide>First Name cannot be empty</p>
+                {/if}
             </div>
             <div class="form-field">
                 <input
@@ -42,6 +51,14 @@
                     class:warning={alertLastName}
                     required
                 />
+                {#if alertLastName}
+                    <img
+                        src="/assets/icon-error.svg"
+                        alt="Error"
+                        transition:fade
+                    />
+                    <p transition:slide>Last Name cannot be empty</p>
+                {/if}
             </div>
             <div class="form-field">
                 <input
@@ -52,6 +69,14 @@
                     class:warning={alertEmail}
                     required
                 />
+                {#if alertEmail}
+                    <img
+                        src="/assets/icon-error.svg"
+                        alt="Error"
+                        transition:fade
+                    />
+                    <p transition:slide>Email cannot be empty</p>
+                {/if}
             </div>
             <div class="form-field">
                 <input
@@ -62,6 +87,14 @@
                     class:warning={alertPassword}
                     required
                 />
+                {#if alertPassword}
+                    <img
+                        src="/assets/icon-error.svg"
+                        alt="Error"
+                        transition:fade
+                    />
+                    <p transition:slide>Password cannot be empty</p>
+                {/if}
             </div>
             <input type="submit" value="CLAIM YOUR FREE TRIAL" />
         </form>
@@ -118,6 +151,7 @@
     .form-field {
         margin-bottom: 20px;
         width: 100%;
+        position: relative;
     }
     .form-field > input {
         width: 100%;
@@ -130,6 +164,19 @@
     }
     .form-field > input:focus {
         border: 1px solid rgb(86, 81, 112);
+    }
+    .form-field > p {
+        text-align: right;
+        color: rgb(232, 114, 121);
+        font-style: italic;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .form-field > img {
+        position: absolute;
+        right: 40px;
+        top: 26px;
+        transform: translate(50%, -50%);
     }
     input[type="submit"] {
         cursor: pointer;
