@@ -1,6 +1,9 @@
 <script lang="ts">
     import Header from "./components/Header.svelte";
     import Form from "./components/Form.svelte";
+    let innerWidth = 0;
+    $: isMobile = innerWidth <= 1440;
+    $: document.body.id = isMobile ? "mobile-body" : "desktop-body";
 </script>
 
 <svelte:head>
@@ -16,6 +19,7 @@
         type="image/x-icon"
     />
 </svelte:head>
+<svelte:window bind:innerWidth />
 <div id="app">
     <div id="wrapper">
         <Header />
@@ -34,5 +38,17 @@
         display: flex;
         align-items: center;
         width: 1200px;
+    }
+    @media all and (max-width: 1440px) {
+        #app {
+            display: block;
+            padding: 100px 0;
+            height: auto;
+        }
+        #wrapper {
+            flex-direction: column;
+            width: 90%;
+            margin: 0 auto;
+        }
     }
 </style>

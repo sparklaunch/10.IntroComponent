@@ -217,4 +217,9 @@
         border: 1px solid rgb(203, 130, 128) !important;
         color: rgb(232, 114, 121) !important;
     }
+    @media all and (max-width: 1440px) {
+        #form {
+            width: 100%;
+        }
+    }
 </style>

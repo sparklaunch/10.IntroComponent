@@ -9,6 +9,11 @@ body {
     height: 100%;
 }
 body {
-    background-image: url("/assets/bg-intro-desktop.png");
     background-color: rgb(255, 110, 109);
+}
+#mobile-body {
+    background-image: url("/assets/bg-intro-mobile.png");
+}
+#desktop-body {
+    background-image: url("/assets/bg-intro-desktop.png");
 }
