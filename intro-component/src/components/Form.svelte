@@ -1,3 +1,20 @@
+<script lang="ts">
+    let firstName: string;
+    let lastName: string;
+    let email: string;
+    let password: string;
+    let alertFirstName,
+        alertLastName,
+        alertEmail,
+        alertPassword: boolean = false;
+    const submitHandler: (any) => void = (event) => {
+        alertFirstName = !firstName;
+        alertLastName = !lastName;
+        alertEmail = !email;
+        alertPassword = !password;
+    };
+</script>
+
 <div id="form">
     <div id="try">
         <p>
@@ -5,12 +22,14 @@
         </p>
     </div>
     <div id="trial-form">
-        <form>
+        <form on:submit|preventDefault={submitHandler} novalidate>
             <div class="form-field">
                 <input
                     type="text"
                     name="first-name"
                     placeholder="First Name"
+                    bind:value={firstName}
+                    class:warning={alertFirstName}
                     required
                 />
             </div>
@@ -19,6 +38,8 @@
                     type="text"
                     name="last-name"
                     placeholder="Last Name"
+                    bind:value={lastName}
+                    class:warning={alertLastName}
                     required
                 />
             </div>
@@ -27,6 +48,8 @@
                     type="email"
                     name="email"
                     placeholder="Email Address"
+                    bind:value={email}
+                    class:warning={alertEmail}
                     required
                 />
             </div>
@@ -35,6 +58,8 @@
                     type="password"
                     name="password"
                     placeholder="Password"
+                    bind:value={password}
+                    class:warning={alertPassword}
                     required
                 />
             </div>
@@ -117,5 +142,15 @@
         font-size: 18px;
         letter-spacing: 1px;
         font-weight: 400;
+        transition: filter 0.3s;
+    }
+    input[type="submit"]:hover {
+        filter: brightness(0.8);
+    }
+    input[type="submit"]:active {
+        filter: brightness(1.2);
+    }
+    .warning {
+        border: 1px solid rgb(203, 130, 128) !important;
     }
 </style>
