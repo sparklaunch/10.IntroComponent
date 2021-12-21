@@ -1,5 +1,8 @@
 <script lang="ts">
     import { slide, fade } from "svelte/transition";
+    const emailRegex: RegExp = new RegExp(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
     let firstName: string;
     let lastName: string;
     let email: string;
@@ -7,12 +10,18 @@
     let alertFirstName,
         alertLastName,
         alertEmail,
-        alertPassword: boolean = false;
+        alertPassword,
+        alertInvalidEmail: boolean = false;
     const submitHandler: (any) => void = (event) => {
         alertFirstName = !firstName;
         alertLastName = !lastName;
         alertEmail = !email;
         alertPassword = !password;
+        if (email && !email.match(emailRegex)) {
+            alertInvalidEmail = true;
+        } else {
+            alertInvalidEmail = false;
+        }
     };
 </script>
 
@@ -66,16 +75,23 @@
                     name="email"
                     placeholder="Email Address"
                     bind:value={email}
-                    class:warning={alertEmail}
+                    class:warning={alertEmail || alertInvalidEmail}
                     required
                 />
-                {#if alertEmail}
+                {#if alertEmail && !alertInvalidEmail}
                     <img
                         src="/assets/icon-error.svg"
                         alt="Error"
                         transition:fade
                     />
                     <p transition:slide>Email cannot be empty</p>
+                {:else if alertInvalidEmail}
+                    <img
+                        src="/assets/icon-error.svg"
+                        alt="Error"
+                        transition:fade
+                    />
+                    <p transition:slide>Looks like this is not an email</p>
                 {/if}
             </div>
             <div class="form-field">
@@ -160,7 +176,7 @@
         border-radius: 5px;
         font-weight: 600;
         color: rgb(52, 51, 55);
-        transition: border 0.3s;
+        transition: border 0.3s, color 0.3s;
     }
     .form-field > input:focus {
         border: 1px solid rgb(86, 81, 112);
@@ -199,5 +215,6 @@
     }
     .warning {
         border: 1px solid rgb(203, 130, 128) !important;
+        color: rgb(232, 114, 121) !important;
     }
 </style>
