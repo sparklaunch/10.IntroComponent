@@ -10,6 +10,7 @@
 <style>
     #header {
         width: 50%;
+        padding-right: 100px;
     }
     #header > h1 {
         color: white;

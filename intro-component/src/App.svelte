@@ -33,5 +33,6 @@
     #wrapper {
         display: flex;
         align-items: center;
+        width: 1200px;
     }
 </style>

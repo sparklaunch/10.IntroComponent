@@ -88,6 +88,7 @@
     .term {
         color: rgb(232, 114, 121);
         font-weight: 700;
+        cursor: pointer;
     }
     .form-field {
         margin-bottom: 20px;
@@ -100,6 +101,7 @@
         border-radius: 5px;
         font-weight: 600;
         color: rgb(52, 51, 55);
+        transition: border 0.3s;
     }
     .form-field > input:focus {
         border: 1px solid rgb(86, 81, 112);
