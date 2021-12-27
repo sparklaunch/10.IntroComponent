@@ -20,15 +20,15 @@
     />
 </svelte:head>
 <svelte:window bind:innerWidth />
-<div id="app">
+<main>
     <div id="wrapper">
         <Header />
         <Form />
     </div>
-</div>
+</main>
 
 <style>
-    #app {
+    main {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -40,7 +40,7 @@
         width: 1200px;
     }
     @media all and (max-width: 1440px) {
-        #app {
+        main {
             display: block;
             padding: 100px 0;
             height: auto;
